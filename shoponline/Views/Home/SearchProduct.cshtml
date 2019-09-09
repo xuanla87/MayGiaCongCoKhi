@@ -1,0 +1,51 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<ShopOnlineModel.EF.tb_Products>
+@{
+    ViewBag.Title = "Tìm kiếm sản phẩm " + ViewBag.Page;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    if (Model.Count > 0)
+    {
+        <div class="alert alert-success">
+            Có @Model.Count  kết quả tìm kiếm
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            Có @Model.Count  kết quả tìm kiếm
+        </div>
+    }
+}
+@foreach (var item in Model)
+{
+    <div class="item-product">
+        <div class="col-md-12">
+            <div class="thumbnail">
+                @if (item.Thumbnail != null)
+                {
+                    <a title="@item.Name" href="/@Url.Content(item.Title)">
+                        <img src="@item.Thumbnail" alt="@item.Title" />
+                    </a>
+                }
+            </div>
+            <div class="item-product-title">
+                <h3>
+                    <a title="@item.Name" href="/@Url.Content(item.Title)">
+                        @item.Name
+                    </a>
+                </h3>
+            </div>
+            <div class="item-product-price">
+                Giá bán: <span>Liên hệ</span>
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-md-12">
+        @Html.PagedListPager(Model, page => Url.Content("/tim-kiem/?keyword=" + ViewBag.Keyword + "&&page=" + page))
+    </div>
+</div>

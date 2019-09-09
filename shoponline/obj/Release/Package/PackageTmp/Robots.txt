@@ -1,0 +1,8 @@
+﻿
+User-agent: * 
+
+Allow: 
+Allow: /Images/
+Disallow: /Areas/
+Disallow: /bin/
+Sitemap :http://cameraquansatmienbac.com/sitemap.xml

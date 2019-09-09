@@ -1,0 +1,93 @@
+﻿@model ShopOnlineModel.EF.tb_Products
+
+
+<div class="breadcrumb">
+    @Html.Raw(ViewBag.breadcrumb)
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        @Html.Action("MenuProduct")
+    </div>
+
+    <div class="col-md-9">
+        <div class="row box-detail-product">
+            <div class="col-md-12">
+                <h1 class="page-title">
+                    @Model.Name
+                </h1>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    @if (Model.Thumbnail != null)
+                    {
+                        <img alt="@Model.Title" src="@Model.Thumbnail" />
+                    }
+                </div>
+            </div>
+            <div class="col-md-6">
+                <ul class="info-product">
+                    <li>
+                        <label>
+                            Mã sản phẩm
+                        </label>:
+                        <span>
+                            @Model.Code
+                        </span>
+                    </li>
+                    <li class="odd_even">
+                        <label>
+                            Tình trạng
+                        </label>:
+
+                        @{
+                            if (Model.Quantity >= 1)
+                            {
+                        <span>
+                            Còn hàng
+                        </span>
+                            }
+                            else
+                            {
+                        <span>
+                            Hết hàng
+                        </span>
+                            }
+                        }
+
+                    </li>
+                    <li>
+                        <label>
+                            Lượt xem
+                        </label>:
+                        <span>
+                            @Model.ViewCount
+                        </span>
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-addcart">Mua hàng ngay</a>
+                <div class="hotline">
+                    <div class="box-hotline">
+                        Hotline: 0946.236.687 - 0981.46.46.43
+                    </div>
+                    <p>
+                        - Liên hệ để có giá ưu đãi
+                    </p>
+                    <p>
+                        - Đặt hàng qua điện thoại, giao hàng tận nơi
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-12">
+                @Html.Raw(Model.Content)
+            </div>
+        </div>
+        <div class="row box-product-related">
+            <div class="box-product-related-title">
+                Sản phẩm cùng loại
+            </div>
+            @Html.Raw(ViewBag.Related)
+        </div>
+    </div>
+</div>

@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <link rel="icon" type="image/png" href="/Images/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <meta name="keywords" content="@ViewBag.Keywords" />
+    <meta name="description" content="@ViewBag.Description" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Font-Awesome-master/css/font-awesome.css" rel="stylesheet" />
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-50628392-10', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <a href="/">
+                <img src="~/Images/banner.jpg" alt="ieco vietnam"/>
+            </a>
+        </div>
+    </div>
+    <div class="navbar nav-main ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse ">
+                @Html.Action("ViewMain", "MenuView")
+                <form action="/tim-kiem" method="get">
+                    <div class="form-search">
+                        <div class="input-group">
+                            <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+                            <span class="input-group-btn">
+                                <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-12">
+                <script>
+                    (function () {
+                        var cx = '017445605264360030833:svi9f5axbfo';
+                        var gcse = document.createElement('script');
+                        gcse.type = 'text/javascript';
+                        gcse.async = true;
+                        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                            '//cse.google.com/cse.js?cx=' + cx;
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(gcse, s);
+                    })();
+                </script>
+                <gcse:search></gcse:search>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="support-main">
+                    <ul class="nav">
+                        <li>
+                            <a href="ymsgr:sendim?lekhanh20387" title="Kinh doanh">
+                                <img src="~/Images/yahoo.png" alt="yahoo" />
+                            </a>
+                            <a href="skype:lexuanit?chat" title="Kinh doanh">
+                                <img src="~/Images/skypeimg.png" alt="skype" />
+                            </a>
+                            <div class="text">
+                                <p>Hỗ trợ bán hàng</p>
+                                <b>0946.236.687</b>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="ymsgr:sendim?lekhanh20387" title="Kỹ thuật">
+                                <img src="~/Images/yahoo.png" alt="yahoo" />
+                            </a>
+                            <a href="skype:lexuanit?chat" title="Kỹ thuật">
+                                <img src="~/Images/skypeimg.png" alt="skype" />
+                            </a>
+                            <div class="text">
+                                <p>Hỗ trợ kỹ thuật </p>
+                                <b>0946.236.687</b>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="ymsgr:sendim?lekhanh20387" title="Bảo hành">
+                                <img src="~/Images/yahoo.png" alt="yahoo" />
+                            </a>
+                            <a href="skype:lexuanit?chat" title="Bảo hành">
+                                <img src="~/Images/skypeimg.png" alt="skype" />
+                            </a>
+                            <div class="text">
+                                <p>Hỗ trợ bảo hành </p>
+                                <b>0946.236.687</b>
+                            </div>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+        </div>
+        @RenderBody()
+        <div class="clearfix">
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <img src="~/Images/thanh-toan.jpg" alt="pay" />
+            </div>
+        </div>
+        <div class="clearfix">
+        </div>
+        <footer>
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.Action("ViewAbout", "MenuView")
+                </div>
+                <div class="col-md-3">
+                    @Html.Action("ViewGiude", "MenuView")
+                </div>
+                <div class="col-md-3">
+                    @Html.Action("ViewIncentive", "MenuView")
+                </div>
+                <div class="col-md-3">
+
+                </div>
+            </div>
+            @*<hr />
+                <p>&copy; 2015 - CAMERA MIỀN BẮC</p>*@
+        </footer>
+    </div>
+    <div class="footer-content">
+        <div class="container">
+            <div class="col-md-4">
+                @Html.Action("Infor_Site", "Home")
+            </div>
+            <div class="col-md-4">
+                @Html.Action("Terms_Site", "Home")
+            </div>
+            <div class="col-md-4">
+                @Html.Action("Customize_Site", "Home")
+            </div>
+        </div>
+    </div>
+    <div class="footer-colophon">
+        <div class="container">
+            <p class="copyright">&copy; 2015 - CAMERA MIỀN BẮC</p>
+        </div>
+    </div>
+    <div class="follow-us">
+        <a class="btn btn-social-icon btn-facebook">
+            <i class="fa fa-facebook"></i>
+        </a>
+        <a class="btn btn-social-icon btn-google">
+            <i class="fa fa-google-plus"></i>
+        </a>
+        <a class="btn btn-social-icon btn-twitter">
+            <i class="fa fa-twitter"></i>
+        </a>
+    </div>
+    <div id="form-contact">
+        <div class="contact-header">
+            <i class="fa fa-envelope-o"></i>
+            Để lại tin nhắn cho chúng tôi
+            <i class="fa fa-arrow-circle-up"></i>
+        </div>
+        <div class="contact-body">
+            <div class="body-header">
+                Để lại tin nhắn cho chúng tôi
+                <i class="fa fa-minus"></i>
+            </div>
+            <div class="body-main">
+
+                <div class="box-body">
+                    <p>
+                        Hiện nay chúng tôi không ở đây, xin vui lòng để lại lời nhắn.
+                    </p>
+                    <div class="form-group">
+                        <input type="text" name="FullName" class="form-control" placeholder="Xin mời nhập Ho tên" />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="Email" class="form-control" placeholder="Email (để tôi liên hệ với bạn)" />
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="Content" placeholder="Hãy gửi tin nhắn cho chúng tôi về vấn đề về bạn:"></textarea>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <input type="submit" value="Gửi tin nhắn" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/shoponline-menu.js"></script>
+    @RenderSection("scripts", required: false)
+    @RenderSection("jsfooter", required: false)
+</body>
+</html>

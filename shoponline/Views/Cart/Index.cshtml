@@ -1,0 +1,65 @@
+﻿@model List<shoponline.Models.CartItemModel>
+@{
+    ViewBag.Title = "Giỏi hàng của bạn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section jsfooter{
+    <script src="~/Scripts/cartcontrol.js"></script>
+}
+@{
+    if (Model.Count > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>Mã sản phẩm</td>
+                    <td>Tên sản phẩm</td>
+                    <td>Hình ảnh</td>
+                    <td>Số lượng </td>
+                    <td>Đơn giá</td>
+                    <td>Thành tiền</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Product.Code</td>
+                        <td>@item.Product.Name</td>
+                        <td>
+                            @if (item.Product.Thumbnail != null)
+                    {
+                                <img src="@item.Product.Thumbnail" alt="@item.Product.Name" width="70" />
+                            }
+                        </td>
+                        <td>
+                            <input type="text" class="txtquantity" data-id="@item.Product.Id" value="@item.Quantity" />
+                        </td>
+                        <td>
+                            @(item.Product.Price.GetValueOrDefault(0) - (item.Product.Price.GetValueOrDefault(0) * (item.Product.Sale / 100)))
+                        </td>
+                        <td>
+                            @(item.Quantity * (item.Product.Price.GetValueOrDefault(0) - (item.Product.Price.GetValueOrDefault(0) * (item.Product.Sale / 100))))
+                        </td>
+                        <td>
+                            <a href="#" data-id="@item.Product.Id" class="btnDelete" title="xóa sản phẩm"><code><i class="fa fa-remove"></i></code></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            Giỏ hàng rỗng, bạn hãy quay lại <a href="/" title="Trang chủ">trang chủ</a>  để mua hàng
+        </div>
+    }
+
+}
+
+<button id="btnContinue" class="btn">Tiếp tục mua hàng</button>
+<button id="btnUpdatecart" class="btn">Cập nhật giỏ hàng</button>
+<button id="btnDeletecartAll" class="btn">Xóa giỏ hàng</button>
+<button id="btnPay" class="btn">Thanh toán</button>

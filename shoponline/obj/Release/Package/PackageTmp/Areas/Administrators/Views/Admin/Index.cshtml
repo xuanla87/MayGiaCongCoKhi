@@ -1,0 +1,72 @@
+﻿@model shoponline.Models.AdminModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Administrators/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Cấu hình
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li>Trang</li>
+        <li class="active">Cấu hình</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    Cấu hình
+                </div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserEmail, htmlAttributes: new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.UserEmail, new { @class = "form-control", @type = "email" })
+                            @Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserPassword, htmlAttributes: new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.UserPassword, new { @class = "form-control", @type = "password" })
+                            @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.confirmPassword, htmlAttributes: new { @class = "control-label" })
+                            @Html.TextBoxFor(model => model.confirmPassword, new { @class = "form-control", @type = "password" })
+                            @Html.ValidationMessageFor(model => model.confirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                }
+                <div class="box-footer">
+                   
+                </div>
+            </div>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->

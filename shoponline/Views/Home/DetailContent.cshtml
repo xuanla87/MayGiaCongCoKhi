@@ -1,0 +1,31 @@
+﻿@model ShopOnlineModel.EF.tb_Contents
+<div class="simple-page">
+    <div class="breadcrumb">
+        @Html.Raw(ViewBag.breadcrumb)
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            @Html.Action("MenuProduct")
+            @Html.Action("MenuService")
+            @Html.Action("LinkPartner")
+
+
+        </div>
+        <div class="col-md-9">
+            <div class="page-title">
+                <h1>
+                    @Model.Title
+                </h1>
+            </div>
+            <div class="page-body">
+                @Html.Raw(Model.Content)
+                <div class="box-content-related">
+                    <div class="header-related">
+                        Bài viết liên quan:
+                    </div>
+                    @Html.Raw(ViewBag.Related)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

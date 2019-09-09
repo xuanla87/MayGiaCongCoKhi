@@ -1,0 +1,78 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<ShopOnlineModel.EF.tb_Products>
+<div class="row">
+    <div class="col-md-3">
+        @Html.Action("MenuProduct")
+        @Html.Action("MenuService")
+        @Html.Action("LinkPartner")
+
+
+    </div>
+    <div class="col-md-9">
+        <div class="row header-product-list">
+            <div class="header-category">
+                @{
+                    if (ViewBag.CParent == null)
+                    {
+                        <h1>
+                            <span>
+                                @ViewBag.CTitle
+                            </span>
+                        </h1>
+                    }
+                    else
+                    {
+                        <h2>
+                            <span>
+                                <a title="@ViewBag.CParent" href="/@ViewBag.CPSlug">
+                                    @ViewBag.CParent
+                                </a>
+                            </span>
+                        </h2>
+                        <h1>
+                            @ViewBag.CTitle
+                        </h1>
+                    }
+                }
+
+            </div>
+        </div>
+        <div class="row list-product">
+            @foreach (var item in Model)
+            {
+                <div class="item-product">
+                    <div class="col-md-12">
+                        <div class="thumbnail">
+                            @if (item.Thumbnail != null)
+                            {
+                                <a title="@item.Name" href="/@Url.Content(item.Title)">
+                                    <img src="@item.Thumbnail" alt="@item.Title" />
+                                </a>
+                            }
+                        </div>
+                        <div class="item-product-title">
+                            <h3>
+                                <a title="@item.Name" href="/@Url.Content(item.Title)">
+                                    @item.Name
+                                </a>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                            }
+        </div>
+        <div class="row paging">
+            @Html.PagedListPager(Model, page => Url.Content("/" + ViewBag.Slug + "/" + page))
+        </div>
+
+        @{
+            if (ViewBag.Thumbnail != null)
+            {
+                <div class="row banner-category">
+                    <img src="@ViewBag.Thumbnail" alt="@ViewBag.CTitle" />
+                </div>
+            }
+        }
+    </div>
+</div>

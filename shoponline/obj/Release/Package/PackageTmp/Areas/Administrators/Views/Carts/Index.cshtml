@@ -1,0 +1,191 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<shoponline.Models.CartModel>
+@{
+    ViewBag.Title = "Đơn hàng mới";
+    Layout = "~/Areas/Administrators/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/Content/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" />
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Danh sách đơn hàng
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Đơn hàng mới</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <a href="/Administrators/Carts" class="btn btn-success">Đơn hàng mới</a>
+                        <a href="/Administrators/Carts/OrderSuccess" class="btn btn-default">Đơn hàng đã duyệt</a>
+                        <a href="/Administrators/Carts/ListAll" class="btn btn-default">Tất cả đơn hàng</a>
+                    </h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="dataTables_length" id="example1_length">
+                                    @using (Html.BeginForm("Index", "Carts", FormMethod.Get))
+                                    {
+                                        <div class="dataTables_length" id="example1_length">
+                                            <div class="input-group">
+                                                <input type="text" name="SearchString" class="form-control" placeholder="Tìm kiếm...">
+                                                <span class="input-group-btn">
+                                                    <button type="submit" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div><div class="col-sm-6">
+                                <div id="example1_filter" class="dataTables_filter">
+                                </div>
+                            </div>
+                        </div><div class="row">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                    <thead>
+
+                                        <tr role="row">
+                                            <th>
+                                                Khách hàng
+                                            </th>
+                                            <th>Địa chỉ nhận</th>
+                                            <th>Điện thoại</th>
+                                            <th>
+                                                Ngày đặt
+                                            </th>
+                                            <th>Tổng tiền</th>
+                                            <th>Xét duyệt</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr role="row" class="odd">
+                                                <td>
+                                                    <a href="#" data-toggle="modal" data-target="#myModal-@item.Id" title=" Xem chi tiết">
+                                                        @Html.DisplayFor(modelItem => item.FullName)
+                                                    </a>
+                                                    <div class="modal fade" id="myModal-@item.Id" role="dialog">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <table class="table table-condensed">
+                                                                        <tr>
+                                                                            <td>Khách hàng</td>
+                                                                            <td>@item.FullName</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Địa chỉ email</td>
+                                                                            <td>@item.Email</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Số điện thoại</td>
+                                                                            <td>@item.PhoneNumber</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Địa chỉ nhận hàng</td>
+                                                                            <td>@item.Address</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Ghi chú</td>
+                                                                            <td>@item.Description</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <table class="table table-bordered">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Mã sản phẩm</th>
+                                                                                <th>Tên sản phẩm</th>
+                                                                                <th>Số lượng</th>
+                                                                                <th>Đơn giá</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @foreach (var idetail in item.ListDetail)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td>@idetail.Code</td>
+                                                                                    <td>@idetail.Name</td>
+                                                                                    <td>@idetail.Quantity</td>
+                                                                                    <td>@idetail.Price</td>
+                                                                                </tr>
+                                                                            }
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Address)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Modified)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Total)
+                                                </td>
+                                                <td>
+                                                    @using (Html.BeginForm("OrderApproval", "Carts", new { Id = item.Id, name = "Index" }))
+                                                    {
+                                                        if (item.Approval == true)
+                                                        {
+                                                            <button type="submit" class="btn btn-danger" title="Hủy">Hủy&nbsp;</button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button type="submit" class="btn btn-success" title="Duyệt">Duyệt&nbsp;</button>
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @using (Html.BeginForm("Remove", "Carts", new { Id = item.Id, name = "Index" }))
+                                                    {
+                                                        <button type="submit" class="btn btn-delete" onclick="return confirm('Bạn chắc chắn muốn xóa đơn hàng này!')" title="Xóa">Xóa&nbsp;</button>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><div class="row">
+                            <div class="col-sm-5">
+                                <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
+
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                    @Html.PagedListPager(Model, page => Url.Content("/Administrators/Carts/Index?page=" + page))
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->

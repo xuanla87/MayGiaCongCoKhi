@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ShopOnlineModel.EF.tb_Products>
+@foreach (var item in Model)
+            {
+    <div class="item-product">
+        <div class="col-md-12">
+            <div class="thumbnail">
+                @if (item.Thumbnail != null)
+                {
+                    <a title="@item.Name" href="/@Url.Content(item.Title)">
+                        <img src="@item.Thumbnail" alt="@item.Title" />
+                    </a>
+                }
+            </div>
+            <div class="item-product-title">
+                <h3>
+                    <a title="@item.Name" href="/@Url.Content(item.Title)">
+                        @item.Name
+                    </a>
+                </h3>
+            </div>
+            @{
+                if (item.Price > 0)
+                {
+                    if (item.Sale > 0)
+                    {
+                        <div class="item-product-price">
+                            Giá bán: <span> @String.Format("{0:#,##0}", (item.Price * item.Sale) / 100)  </span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="item-product-price">
+                            Giá bán: <span> @String.Format("{0:#,##0}", item.Price)  </span>
+                        </div>
+                    }
+
+                }
+                else
+                {
+                    <div class="item-product-price">
+                        Giá bán: <span> Liên hệ </span>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+                }

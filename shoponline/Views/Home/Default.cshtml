@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string stAction = ViewBag.vAction;
+
+    switch (stAction)
+    {
+        case "Content":
+            @Html.Action("CategoryContent", new { slug = ViewBag.vSlug })
+            break;
+        case "Service":
+            @Html.Action("CategoryContent", new { slug = ViewBag.vSlug })
+            break;
+        case "Product":
+            @Html.Action("CategoryProduct", new { slug = ViewBag.vSlug })
+            break;
+        case "DetailProduct":
+            @Html.Action("DetailProduct", new { slug = ViewBag.vSlug })
+            break;
+        case "DetailContent":
+            @Html.Action("DetailContent", new { slug = ViewBag.vSlug })
+            break;
+        case "DetailPage":
+            @Html.Action("DetailPage", new { slug = ViewBag.vSlug })
+            break;
+        case "404":
+            @Html.Action("Page404")
+            break;
+        case "":
+            @Html.Action("Index")
+            break;
+        default:
+            @Html.Action("Index")
+            break;
+    }
+}
+
+

@@ -1,0 +1,13 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<ShopOnlineModel.EF.tb_Products>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+            <div class="item-product">
+                @Html.DisplayFor(modelItem => item.Name)
+            </div>
+        </div>
+    }
+</div>

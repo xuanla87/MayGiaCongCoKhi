@@ -1,0 +1,10 @@
+﻿body {
+}
+
+.modal-dialog {
+    width: 700px;
+}
+
+table > tr > td {
+    vertical-align: middle !important;
+}
